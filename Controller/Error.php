@@ -18,7 +18,7 @@ class Error extends Main
 {
     /**
      * Action pour l'erreur 404
-     * 
+     *
      * @return void
      */
     public function error404Action()
@@ -53,6 +53,6 @@ class Error extends Main
             }
         }
 
-        $this->_view->search = implode(' ', $tab);
+        $this->view->search = implode(' ', $tab);
     }
 }

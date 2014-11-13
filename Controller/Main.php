@@ -11,6 +11,7 @@ namespace Solire\Front\Controller;
 use Solire\Lib\Registry;
 use Solire\Lib\Model\GabaritManager;
 use Solire\Lib\Session;
+use Solire\Lib\Hook;
 
 /**
  * Controleur principal
@@ -43,8 +44,6 @@ class Main extends \Solire\Lib\Controller
         parent::start();
 
         $this->seo->setTitle($this->mainConfig->get('project', 'name'));
-
-        $this->view->currentUrl = $this->getCurrentUrl();
 
         $this->view->googleAnalytics = Registry::get('analytics');
 
@@ -107,7 +106,7 @@ class Main extends \Solire\Lib\Controller
             'url'   => './',
         );
 
-        $hook = new \Slrfw\Hook();
+        $hook = new Hook();
         $hook->setSubdirName('front');
 
         $hook->controller = $this;
@@ -131,7 +130,7 @@ class Main extends \Solire\Lib\Controller
          */
         $this->loadExec('shutdown');
 
-        $hook = new \Slrfw\Hook();
+        $hook = new Hook();
         $hook->setSubdirName('front');
 
         $hook->controller = $this;
