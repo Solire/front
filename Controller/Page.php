@@ -8,6 +8,8 @@
 
 namespace Solire\Front\Controller;
 
+use Solire\Lib\Path;
+
 /**
  * Controleur qui gère l'affichage des pages gabaritPage
  *
@@ -18,14 +20,14 @@ class Page extends Main
 {
     /**
      * Le gabaritpage de la page courante
-     * 
+     *
      * @var \Solire\Lib\Model\gabaritPage
      */
     public $page = null;
 
     /**
      * Les gabaritpages parents de la page courante
-     * 
+     *
      * @var \Solire\Lib\Model\gabaritPage[]
      */
     public $parents = null;
@@ -105,7 +107,7 @@ class Page extends Main
         $hook->controller = $this;
         $hook->exec($view . 'Gabarit');
 
-        $this->view->setViewPath('page' . DS . $view);
+        $this->view->setViewPath('page' . Path::DS . $view);
     }
 
     /**
