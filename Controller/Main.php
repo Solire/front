@@ -125,11 +125,6 @@ class Main extends \Solire\Lib\Controller
     {
         parent::shutdown();
 
-        /*
-         * Chargement des executions automatiques
-         */
-        $this->loadExec('shutdown');
-
         $hook = new Hook();
         $hook->setSubdirName('front');
 
