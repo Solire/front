@@ -30,7 +30,7 @@
                 <li>
                     <div style="float: left;" class="btn-group">
                         <button class="btn btn-default btn-small">
-                            <img src="app/back/img/flags/png/<?php echo strtolower(SUF_VERSION); ?>.png" alt="" />
+                            <img src="public/default/back/img/flags/png/<?php echo strtolower(SUF_VERSION); ?>.png" alt="" />
                         </button>
                         <button class="btn btn-small <?php echo ($this->page->getMeta("visible") > 0 ? 'btn-success' : 'btn-default') ?> visible-lang"  title="Rendre '<?php echo $this->page->getMeta('titre'); ?>' <?php echo ($this->page->getMeta('visible') > 0 ? 'invisible' : 'visible' ) ?> sur le site">
                             <input type="checkbox" value="<?php echo $this->page->getMeta("id"); ?>|<?php echo $this->page->getMeta("id_version"); ?>" style="display:none;" class="visible-lang-<?php echo $this->page->getMeta('id'); ?>-<?php echo $this->page->getMeta("id_version"); ?>" <?php echo ($this->page->getMeta("visible") > 0 ? ' checked="checked"' : '') ?> />
@@ -54,7 +54,7 @@
 ?>
                 <li class="divider-vertical"></li>
                 <li class="dropdown">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#"><img src="app/back/img/gray_dark/user_12x16.png">  <b class="caret"></b></a>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#"><img src="public/default/back/img/gray_dark/user_12x16.png">  <b class="caret"></b></a>
                     <ul class="dropdown-menu">
 <?php
     if (isset($this->page) && is_object($this->page)) {

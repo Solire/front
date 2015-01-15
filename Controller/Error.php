@@ -36,7 +36,7 @@ class Error extends Main
 
         $requestUrl = urldecode($requestUrl);
         $requestUrl = strtolower($requestUrl);
-        $requestUrl = \Solire\Lib\String::replaceAccent($requestUrl);
+        $requestUrl = \Solire\Lib\Format\String::replaceAccent($requestUrl);
         $tab        = preg_split('`[^a-z]+`', $requestUrl);
 
         $trash = array(

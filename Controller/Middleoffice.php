@@ -16,25 +16,25 @@ use Solire\Lib\Registry;
  * @author  smonnot <smonnot@solire.fr>
  * @license CC by-nc http://creativecommons.org/licenses/by-nc/3.0/fr/
  */
-class MiddleOffice extends \Solire\Lib\Controller
+class Middleoffice extends \Solire\Lib\Controller
 {
     /**
      * Le gabaritpage de la page courante
-     * 
+     *
      * @var \Solire\Lib\Model\gabaritPage
      */
     private $page = null;
 
     /**
      * La session de l'utilisateur admin connecté
-     * 
+     *
      * @var \Solire\Lib\Session
      */
     protected $utilisateurAdmin;
 
     /**
      * La manageur des gabarits
-     * 
+     *
      * @var \Solire\Lib\Model\gabaritManager
      */
     public $gabaritManager;
@@ -55,7 +55,7 @@ class MiddleOffice extends \Solire\Lib\Controller
     {
         parent::start();
         $this->utilisateurAdmin = new \Solire\Lib\Session('back', 'back');
-        $this->gabaritManager = new \Solire\Lib\Model\gabaritManager();
+        $this->gabaritManager = new \Solire\Lib\Model\GabaritManager();
     }
 
     /**
@@ -63,7 +63,7 @@ class MiddleOffice extends \Solire\Lib\Controller
      *
      * @return void
      */
-    public function toolbarBackAction()
+    public function toolbarbackAction()
     {
         $this->view->utilisateurAdmin = $this->utilisateurAdmin;
         if ($this->utilisateurAdmin->isConnected()) {
@@ -75,10 +75,11 @@ class MiddleOffice extends \Solire\Lib\Controller
         $this->javascript->addLibrary('back/js/main.js');
         $this->css->addLibrary(
             'back/css/bootstrap/bootstrap.min.css',
-            'screen',
-            false
+            [
+                'media' => 'screen',
+            ]
         );
-        
+
         if (isset($_POST['id_gab_page'])
             && intval($_POST['id_gab_page']) > 0
             && isset($_POST['id_api'])
@@ -100,7 +101,7 @@ class MiddleOffice extends \Solire\Lib\Controller
                 $hook->permission  = null;
                 $hook->utilisateur = $this->utilisateurAdmin;
                 $hook->visible     = $this->page->getMeta('visible') == 0 ? 1 : 0;
-                $hook->ids         = $data['id'];
+                $hook->ids         = $_POST['id_gab_page'];
                 $hook->versionId   = ID_VERSION;
 
                 $hook->exec('pagevisible');

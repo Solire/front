@@ -27,13 +27,10 @@
 <?php
     if (isset($this->page)) {
 ?>
-
-
-    <?php $this->add('../../back/view/template/cropdialog'); ?>
-    <script src='app/back/js/mercury/mercury_loader.js?src=<?php echo $this->url; ?>app/back/js/mercury&pack=bundled&visible=false'></script>
-    <!--<script src="app/back/js/jquery/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>-->
-
-
+<?php
+        $this->add('../../back/view/template/cropdialog');
+?>
+    <script src='<?php echo $this->javascript->getPath('back/js/mercury/mercury_loader.js'); ?>?src=<?php echo $this->url; ?>public/default/back/js/mercury&pack=bundled&visible=false'></script>
     <script type="text/javascript">
 
         function upload() {
@@ -142,7 +139,7 @@
         }
 
         $(function() {
-            loadScript("app/back/js/smallipop/jquery.smallipop.js", function() {
+            loadScript("public/default/back/js/smallipop/jquery.smallipop.js", function() {
                 $('[data-smallipop=true]').smallipop({
                     preferredPosition: 'right',
                     theme: 'black',
@@ -167,7 +164,7 @@
                     }
                 });
             })
-            loadCss("app/back/css/smallipop/jquery.smallipop.css")
+            loadCss("public/default/back/css/smallipop/jquery.smallipop.css")
 
 
 
@@ -175,7 +172,7 @@
                 var element = e.target;
                 if ($(element).attr("id") == "mercury_media_modal" && $(element).find(".media_image_list").length == 1) {
                     loadSelectImages(element)
-                    loadScript("app/back/js/plupload/plupload.full.min.js", function() {
+                    loadScript("public/default/back/js/plupload/plupload.full.min.js", function() {
                         upload()
                     })
 
@@ -194,24 +191,24 @@
                     $(element).ready(function() {
                         $("#mercury_iframe").after('<div id="back-toolbar-container"></div>')
 
-                        loadScript("app/back/js/jquery/jquery-ui-1.8.23.custom.min.js")
-                        loadScript("app/back/js/jquery/jcrop/jquery.Jcrop.min.js")
-                        loadScript("app/back/js/jquery/ui.spinner.min.js")
-                        loadScript("app/back/js/main.js?admin")
-                        loadScript("app/back/js/jquery/sticky.js?admin")
+                        loadScript("public/default/back/js/jquery/jquery-ui-1.8.23.custom.min.js")
+                        loadScript("public/default/back/js/jquery/jcrop/jquery.Jcrop.min.js")
+                        loadScript("public/default/back/js/jquery/ui.spinner.min.js")
+                        loadScript("public/default/back/js/main.js?admin")
+                        loadScript("public/default/back/js/jquery/sticky.js?admin")
 
-                        loadCss("app/back/css/jcrop/jquery.Jcrop.min.css")
-                        loadCss("app/back/css/jquery-ui-1.8.7.custom.css")
-                        loadCss("app/back/css/bootstrap/bootstrap-responsive.min.css")
-                        loadCss("app/back/css/bootstrap/bootstrap.min.css")
-                        loadCss("app/back/css/ui.spinner.css")
-                        loadCss("app/back/css/crop.css")
-                        loadCss("app/back/css/sticky.css")
+                        loadCss("public/default/back/css/jcrop/jquery.Jcrop.min.css")
+                        loadCss("public/default/back/css/jquery-ui-1.8.7.custom.css")
+                        loadCss("public/default/back/css/bootstrap/bootstrap-responsive.min.css")
+                        loadCss("public/default/back/css/bootstrap/bootstrap.min.css")
+                        loadCss("public/default/back/css/ui.spinner.css")
+                        loadCss("public/default/back/css/crop.css")
+                        loadCss("public/default/back/css/sticky.css")
 
-                        $("#back-toolbar-container").css({"width": "100%", "z-index": "20000", "position": "fixed"}).load("middleoffice/toolbarback.html", {currentUrl : "<?php echo $this->currentUrl; ?>", id_gab_page : <?php echo $this->page->getMeta("id") ?>, id_api : <?php echo $this->page->getMeta("id_api") ?>}, function() {
+                        $("#back-toolbar-container").css({"width": "100%", "z-index": "20000", "position": "fixed"}).load("middleoffice/toolbarback.html", {currentUrl : "<?php echo \Solire\Lib\FrontController::getCurrentUrl(); ?>", id_gab_page : <?php echo $this->page->getMeta("id") ?>, id_api : <?php echo $this->page->getMeta("id_api") ?>}, function() {
                             cloneModalCrop.appendTo("body")
-                            loadScript("app/back/js/bootstrap/bootstrap.min.js?admin", function(){
-                                loadScript("app/back/js/crop_front.js");
+                            loadScript("public/default/back/js/bootstrap/bootstrap.min.js?admin", function(){
+                                loadScript("public/default/back/js/crop_front.js");
                             });
                             $(".mode_normal").click(function(e) {
                                 if($(".visible-lang input").length != 0 && !$(".visible-lang input").is(":checked")) {
@@ -314,13 +311,13 @@
 ?>
     <script type="text/javascript">
         $(function() {
-            loadScript("app/back/js/bootstrap/bootstrap.min.js?admin")
-            loadScript("app/back/js/main.js?admin")
+            loadScript("public/default/back/js/bootstrap/bootstrap.min.js?admin")
+            loadScript("public/default/back/js/main.js?admin")
 
-            loadCss("app/back/css/bootstrap/bootstrap-responsive.min.css")
-            loadCss("app/back/css/bootstrap/bootstrap.min.css")
+            loadCss("public/default/back/css/bootstrap/bootstrap-responsive.min.css")
+            loadCss("public/default/back/css/bootstrap/bootstrap.min.css")
             $("body").prepend('<div id="back-toolbar-container"></div>')
-            $("#back-toolbar-container").css({"width": "100%", "z-index": "20000", "position": "fixed"}).load("middleoffice/toolbarback.html", {currentUrl : "<?php echo $this->currentUrl; ?>"}, function() {
+            $("#back-toolbar-container").css({"width": "100%", "z-index": "20000", "position": "fixed"}).load("middleoffice/toolbarback.html", {currentUrl : "<?php echo \Solire\Lib\FrontController::getCurrentUrl(); ?>"}, function() {
 
             })
         });
