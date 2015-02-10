@@ -37,14 +37,14 @@
 <?php
     }
 
-    echo $this->css;
+    echo $this->css->outputAll();
 ?>
         <script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="<?php echo $this->javascript->getPath('front/js/jquery/jquery-1.7.min.js'); ?>"><\/script>')</script>
 <?php
     if ($this->utilisateurAdmin->isConnected() && !$this->modePrevisuPage && (isset($_GET['mercury_frame']) || !isset($this->page))
         || !$this->utilisateurAdmin->isConnected()
     ) {
-        echo $this->javascript;
+        echo $this->javascript->outputAll();
     }
 ?>
     </head>
