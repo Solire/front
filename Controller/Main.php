@@ -8,6 +8,7 @@
 
 namespace Solire\Front\Controller;
 
+use Solire\Lib\FrontController;
 use Solire\Lib\Registry;
 use Solire\Lib\Model\GabaritManager;
 use Solire\Lib\Session;
@@ -49,7 +50,12 @@ class Main extends \Solire\Lib\Controller
 
         $this->view->filAriane = null;
 
-        $this->gabaritManager = new GabaritManager();
+        $className = FrontController::searchClass('Model\GabaritManager');
+        if ($className !== false) {
+            $this->gabaritManager = new $className();
+        } else {
+            $this->gabaritManager = new GabaritManager();
+        }
 
         /*
          * Mode prévisualisation,
