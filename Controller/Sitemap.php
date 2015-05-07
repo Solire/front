@@ -1,10 +1,4 @@
 <?php
-/**
- * Controleur qui gère l'affichage du sitemap
- *
- * @author  smonnot <smonnot@solire.fr>
- * @license CC by-nc http://creativecommons.org/licenses/by-nc/3.0/fr/
- */
 
 namespace Solire\Front\Controller;
 
@@ -18,9 +12,9 @@ class Sitemap extends Main
 {
     /**
      * Action qui va s'occuper de l'affichage du sitemap
-     * 
+     *
      * @global array $pagesResult ??
-     * 
+     *
      * @return void
      */
     public function startAction()
@@ -188,9 +182,9 @@ class Sitemap extends Main
      * @param array  $page         Tableau des infos de pages
      * @param type   $index        ??
      * @param string $searchString chaine recherchée
-     * 
+     *
      * @global array $pagesResult
-     * 
+     *
      * @return void
      */
     public function filter($page, $index, $searchString)

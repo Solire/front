@@ -1,10 +1,4 @@
 <?php
-/**
- * Controleur qui gère les pages d'erreurs
- *
- * @author  smonnot <smonnot@solire.fr>
- * @license CC by-nc http://creativecommons.org/licenses/by-nc/3.0/fr/
- */
 
 namespace Solire\Front\Controller;
 

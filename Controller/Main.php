@@ -1,10 +1,4 @@
 <?php
-/**
- * Controleur principal
- *
- * @author  smonnot <smonnot@solire.fr>
- * @license CC by-nc http://creativecommons.org/licenses/by-nc/3.0/fr/
- */
 
 namespace Solire\Front\Controller;
 
@@ -17,20 +11,20 @@ use Solire\Lib\Hook;
 /**
  * Controleur principal
  *
- * @author  smonnot <smonnot@solire.fr>
+ * @author  smonnot  <smonnot@solire.fr>
  * @license CC by-nc http://creativecommons.org/licenses/by-nc/3.0/fr/
  */
 class Main extends \Solire\Lib\Controller
 {
     /**
      * Utilisateur de l'admin
-     * @var \Solire\Lib\Model\utilisateur
+     * @var Session
      */
     public $utilisateurAdmin;
 
     /**
      * Manager des gabarits
-     * @var \Solire\Lib\Model\gabaritManager
+     * @var GabaritManager
      */
     public $gabaritManager;
 
@@ -68,7 +62,7 @@ class Main extends \Solire\Lib\Controller
         $this->view->modePrevisuPage = false;
 
         if ($this->utilisateurAdmin->isConnected()
-            && $this->ajax == false
+            && !$this->ajax
         ) {
             if (!isset($_POST['id_gabarit'])) {
                 if (isset($_GET['mode_previsualisation'])) {
@@ -118,7 +112,6 @@ class Main extends \Solire\Lib\Controller
         $hook->controller = $this;
 
         $hook->exec('start');
-
     }
 
     /**

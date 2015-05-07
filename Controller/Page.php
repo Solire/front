@@ -1,10 +1,4 @@
 <?php
-/**
- * Controleur qui gère l'affichage des pages gabaritPage
- *
- * @author  smonnot <smonnot@solire.fr>
- * @license CC by-nc http://creativecommons.org/licenses/by-nc/3.0/fr/
- */
 
 namespace Solire\Front\Controller;
 
