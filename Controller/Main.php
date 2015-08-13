@@ -42,7 +42,7 @@ class Main extends \Solire\Lib\Controller
 
         $this->view->googleAnalytics = Registry::get('analytics');
 
-        $this->view->filAriane = null;
+        $this->view->locale = SUF_VERSION;
 
         $className = FrontController::searchClass('Model\GabaritManager');
         if ($className !== false) {
