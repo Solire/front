@@ -96,12 +96,12 @@ class Page extends Main
         $this->view->parents   = $this->parents;
 
         $view = $this->page->getGabarit()->getName();
+        $this->view->setViewPath('page' . Path::DS . $view);
+
         $hook = new \Solire\Lib\Hook();
         $hook->setSubdirName('front');
         $hook->controller = $this;
         $hook->exec($view . 'Gabarit');
-
-        $this->view->setViewPath('page' . Path::DS . $view);
     }
 
     /**
