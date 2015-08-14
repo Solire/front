@@ -25,7 +25,7 @@
         <link rel="author" href="https://plus.google.com/{{ seo.getAuthor() }}" title="{{ seo.getAuthorName() }}" type="text/html">
     {% endif %}
 
-    <base href="{{ url }}" />
+    <base href="{{ url }}">
 
     {% if seo.getUrlCanonical() != '' %}
         <link rel="canonical" href="{{ seo.getUrlCanonical() }}"/>
