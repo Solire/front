@@ -1,0 +1,26 @@
+{% extends "view/main.html.twig" %}
+{% block content %}
+    <section>
+        <h1>{% trans %}Page non trouvée{% endtrans %}</h1>
+        <p>
+            {% trans %}
+            Une erreur est survenue lors du chargement de la page
+            {% endtrans %}
+            <br>
+            {% trans %}Il est possible que cette page ait été déplacée ou supprimée, ou bien que l'adresse saisie dans la barre d'adresse soit incorrecte.{% endtrans %}
+    </p>
+
+    <p>
+        {% trans %}Vous allez être automatiquement redirigé vers la page d'accueil du site.{% endtrans %}
+        <br>
+        {% trans %}Dans le cas contraire, merci de cliquer sur ce lien : {% endtrans %}
+        <a href="./">
+            {% trans %}Retour vers la page d'accueil{% endtrans %}
+        </a>
+    </p>
+    </section>
+
+    <script type="text/javascript">
+        setTimeout("window.location = \"./\"", 10000);
+    </script>
+{% endblock %}
