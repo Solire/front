@@ -65,9 +65,11 @@
 </div>
 
 <footer class="footer" id="mainFooter">
-    {% if mainPage.element_commun.getValues('publisher') != '' %}
-        <a target="_blank" rel="publisher" href="https://plus.google.com/{{ mainPage.element_commun.getValues("publisher") }}">{{ mainPage.element_commun.getValues("publisher_nom") }}</a>
-    {% endif %}
+    {% block footer %}
+        {% if mainPage.element_commun.getValues('publisher') != '' %}
+            <a target="_blank" rel="publisher" href="https://plus.google.com/{{ mainPage.element_commun.getValues("publisher") }}">{{ mainPage.element_commun.getValues("publisher_nom") }}</a>
+        {% endif %}
+    {% endblock %}
 </footer>
 
 <script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="{{ javascript.getPath('front/js/jquery/jquery-1.7.min.js') }}"><\/script>')</script>
