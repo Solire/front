@@ -102,7 +102,7 @@ class Main extends \Solire\Lib\Controller
 
         $this->view->breadCrumbs = array();
         $this->view->breadCrumbs[] = array(
-            'label' => $this->tr('Accueil'),
+            'title' => $this->tr('Accueil'),
             'url'   => './',
         );
 
