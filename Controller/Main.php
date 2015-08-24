@@ -107,11 +107,11 @@ class Main extends \Solire\Lib\Controller
         );
 
         $hook = new Hook();
-        $hook->setSubdirName('front');
+        $hook->setSubdirName('Front');
 
         $hook->controller = $this;
 
-        $hook->exec('start');
+        $hook->exec('Start');
     }
 
     /**
@@ -125,10 +125,10 @@ class Main extends \Solire\Lib\Controller
         parent::shutdown();
 
         $hook = new Hook();
-        $hook->setSubdirName('front');
+        $hook->setSubdirName('Front');
 
         $hook->controller = $this;
 
-        $hook->exec('shutdown');
+        $hook->exec('Shutdown');
     }
 }
