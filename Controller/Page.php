@@ -99,7 +99,7 @@ class Page extends Main
         $this->view->setViewPath('page' . Path::DS . $view);
 
         $hook = new \Solire\Lib\Hook();
-        $hook->setSubdirName('front');
+        $hook->setSubdirName('Front');
         $hook->controller = $this;
         $hook->exec($view . 'Gabarit');
     }
