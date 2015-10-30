@@ -155,10 +155,12 @@ class Sitemap extends Main
                 if (isset($_GET['tinymce']) && $_GET['tinymce'] == 1) {
                     $page['title'] = ($page['visible'] ? '✓' : '✕') . ' ' . $page['title'];
 
-                    $pagesClone[] = array(
-                        'title' => $page['title'],
-                        'value' => $page['path'],
-                    );
+                    if ($page['path'] != '') {
+                        $pagesClone[] = array(
+                            'title' => $page['title'],
+                            'value' => $page['path'],
+                        );
+                    }
                 } elseif (isset($_GET['onlylink']) && $_GET['onlylink'] == 1) {
                     $page['title'] = ($page['visible'] ? '&#10003;' : '&#10005;') . ' ' . $page['title'];
 
