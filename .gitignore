@@ -1,6 +1,5 @@
 # On ignore le dossier netbeans
-/nbproject/private/
-
+/nbproject/
 
 # dossiers de documentations
 ~*/
