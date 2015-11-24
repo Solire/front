@@ -56,7 +56,7 @@ class Main extends \Solire\Lib\Controller
          * On teste si utilisateur de l'admin est connecté et donc si il a la
          * possibilité de voir le site sans tenir compte de la visibilité
          */
-        $this->utilisateurAdmin = new Session('back', 'back');
+        $this->utilisateurAdmin = new Session('back', 'Back');
         $this->view->utilisateurAdmin = $this->utilisateurAdmin;
 
         $this->view->modePrevisuPage = false;

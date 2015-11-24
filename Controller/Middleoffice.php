@@ -48,7 +48,7 @@ class Middleoffice extends \Solire\Lib\Controller
     public function start()
     {
         parent::start();
-        $this->utilisateurAdmin = new \Solire\Lib\Session('back', 'back');
+        $this->utilisateurAdmin = new \Solire\Lib\Session('back', 'Back');
         $this->gabaritManager = new \Solire\Lib\Model\GabaritManager();
     }
 
