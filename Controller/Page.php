@@ -99,7 +99,7 @@ class Page extends Main
         $this->view->setViewPath('page' . Path::DS . $view);
 
         $hook = new \Solire\Lib\Hook();
-        $hook->setSubdirName('front');
+        $hook->setSubdirName('Front');
         $hook->controller = $this;
         $hook->exec($view . 'Gabarit');
     }
@@ -127,7 +127,7 @@ class Page extends Main
             $this->fullRewriting[] = $parent->getMeta('rewriting') . '/';
 
             $breadCrumbs = array(
-                'label' => $parent->getMeta('titre'),
+                'title' => $parent->getMeta('titre'),
             );
             if ($parent->getGabarit()->getView()) {
                 $breadCrumbs['url'] = implode('/', $this->fullRewriting) . '/';
@@ -203,7 +203,7 @@ class Page extends Main
 
 
             $this->view->breadCrumbs[]  = array(
-                'label'    => $page->getMeta('titre'),
+                'title'    => $page->getMeta('titre'),
                 'url'      => $url,
                 'view'     => $page->getGabarit()->getView()
             );

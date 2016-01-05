@@ -1,0 +1,64 @@
+<!doctype html>
+<html class="no-js" lang="{{ locale|lower }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{{ seo.getTitle() }}</title>
+    <meta name="description" content="{{ seo.getDescription() }}">
+    <meta name="keywords" lang="{{ locale|lower }}" content="{{ seo.showKeywords() }}">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="language" content="{{ locale|lower }}">
+    <meta name="robots" content="{{ seo.getIndex() }}index, {{ seo.getFollow() }}follow, all">
+    <meta name="googlebot" content="{{ seo.getIndex() }}index, {{ seo.getFollow() }}follow, all">
+    <meta name="google-site-verification" content="{{ mainPage.element_commun.getValues("code_google_webmaster_tools") }}">
+    <meta name="msvalidate.01" content="{{ mainPage.element_commun.getValues("code_bing_webmaster_tools") }}">
+    <meta name="generator" content="Solire" />
+    <!--[if lt IE 9]>
+        <script src="{{ url }}app/front/js/html5.js"></script>
+    <![endif]-->
+
+    {% if seo.getAuthor() != '' %}
+        <link rel="author" href="https://plus.google.com/{{ seo.getAuthor() }}" title="{{ seo.getAuthorName() }}" type="text/html">
+    {% endif %}
+
+    <base href="{{ url }}">
+
+    {% if seo.getUrlCanonical() != '' %}
+        <link rel="canonical" href="{{ seo.getUrlCanonical() }}"/>
+    {% endif %}
+
+    {{ css.outputAll() }}
+</head>
+<body itemscope itemtype="http://schema.org/WebPage">
+
+<header>
+    {% block header %}
+    {% endblock %}
+</header>
+
+{% block breadcrumbs %}
+{% endblock %}
+
+<div id="main" role="main">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<footer class="footer" id="mainFooter">
+    {% block footer %}
+        {% if mainPage.element_commun.getValues('publisher') != '' %}
+            <a target="_blank" rel="publisher" href="https://plus.google.com/{{ mainPage.element_commun.getValues("publisher") }}">{{ mainPage.element_commun.getValues("publisher_nom") }}</a>
+        {% endif %}
+    {% endblock %}
+</footer>
+
+<script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="{{ javascript.getPath('front/js/jquery/jquery-1.7.min.js') }}"><\/script>')</script>
+{{ javascript.outputAll() }}
+
+<script type="text/javascript">
+    {{ mainPage.element_commun.getValues('code_google_analytics') }}
+</script>
+</body>
+</html>

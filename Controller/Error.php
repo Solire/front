@@ -1,6 +1,8 @@
 <?php
 
 namespace Solire\Front\Controller;
+use Solire\Lib\Format\String;
+use Solire\Lib\Registry;
 
 /**
  * Controleur qui gère les pages d'erreurs
@@ -17,36 +19,7 @@ class Error extends Main
      */
     public function error404Action()
     {
-        $page = $this->gabaritManager->getPage(ID_VERSION, ID_API, 1, 0, 0, true);
-
-        $this->seo->setTitle($page->getMeta('titre'));
-        $this->seo->setDescription($page->getMeta('bal_descr'));
-
-        $requestUrl = str_replace(
-            \Solire\Lib\Registry::get('url'),
-            '',
-            'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']
-        );
-
-        $requestUrl = urldecode($requestUrl);
-        $requestUrl = strtolower($requestUrl);
-        $requestUrl = \Solire\Lib\Format\String::replaceAccent($requestUrl);
-        $tab        = preg_split('`[^a-z]+`', $requestUrl);
-
-        $trash = array(
-            'html',
-            'htm',
-            'php',
-        );
-
-        $tab = array_diff($tab, $trash);
-
-        foreach ($tab as $ii => $t) {
-            if (mb_strlen($t) < 3) {
-                unset($tab[$ii]);
-            }
-        }
-
-        $this->view->search = implode(' ', $tab);
+        header("HTTP/1.0 404 Not Found");
+        $this->seo->setTitle($this->tr('Page non trouvée'));
     }
 }

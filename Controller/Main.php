@@ -42,7 +42,7 @@ class Main extends \Solire\Lib\Controller
 
         $this->view->googleAnalytics = Registry::get('analytics');
 
-        $this->view->filAriane = null;
+        $this->view->locale = SUF_VERSION;
 
         $className = FrontController::searchClass('Model\GabaritManager');
         if ($className !== false) {
@@ -56,7 +56,7 @@ class Main extends \Solire\Lib\Controller
          * On teste si utilisateur de l'admin est connecté et donc si il a la
          * possibilité de voir le site sans tenir compte de la visibilité
          */
-        $this->utilisateurAdmin = new Session('back', 'back');
+        $this->utilisateurAdmin = new Session('back', 'Back');
         $this->view->utilisateurAdmin = $this->utilisateurAdmin;
 
         $this->view->modePrevisuPage = false;
@@ -102,16 +102,16 @@ class Main extends \Solire\Lib\Controller
 
         $this->view->breadCrumbs = array();
         $this->view->breadCrumbs[] = array(
-            'label' => $this->tr('Accueil'),
+            'title' => $this->tr('Accueil'),
             'url'   => './',
         );
 
         $hook = new Hook();
-        $hook->setSubdirName('front');
+        $hook->setSubdirName('Front');
 
         $hook->controller = $this;
 
-        $hook->exec('start');
+        $hook->exec('Start');
     }
 
     /**
@@ -125,10 +125,10 @@ class Main extends \Solire\Lib\Controller
         parent::shutdown();
 
         $hook = new Hook();
-        $hook->setSubdirName('front');
+        $hook->setSubdirName('Front');
 
         $hook->controller = $this;
 
-        $hook->exec('shutdown');
+        $hook->exec('Shutdown');
     }
 }
