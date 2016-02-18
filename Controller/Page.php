@@ -5,7 +5,7 @@ namespace Solire\Front\Controller;
 use Solire\Lib\Path;
 
 /**
- * Controleur qui gère l'affichage des pages gabaritPage
+ * Controleur qui gère l'affichage des pages gabaritPage.
  *
  * @author  smonnot <smonnot@solire.fr>
  * @license CC by-nc http://creativecommons.org/licenses/by-nc/3.0/fr/
@@ -13,28 +13,28 @@ use Solire\Lib\Path;
 class Page extends Main
 {
     /**
-     * Le gabaritpage de la page courante
+     * Le gabaritpage de la page courante.
      *
      * @var \Solire\Lib\Model\gabaritPage
      */
     public $page = null;
 
     /**
-     * Les gabaritpages parents de la page courante
+     * Les gabaritpages parents de la page courante.
      *
      * @var \Solire\Lib\Model\gabaritPage[]
      */
     public $parents = null;
 
     /**
-     * Accepte les rewritings
+     * Accepte les rewritings.
      *
-     * @var boolean
+     * @var bool
      */
     public $acceptRew = true;
 
     /**
-     * Action qui affiche la page gabpage courante
+     * Action qui affiche la page gabpage courante.
      *
      * @return void
      */
@@ -92,8 +92,8 @@ class Page extends Main
             $this->seo->disableIndex();
         }
 
-        $this->view->page      = $this->page;
-        $this->view->parents   = $this->parents;
+        $this->view->page = $this->page;
+        $this->view->parents = $this->parents;
 
         $view = $this->page->getGabarit()->getName();
         $this->view->setViewPath('page' . Path::DS . $view);
@@ -105,7 +105,7 @@ class Page extends Main
     }
 
     /**
-     * Traitement propre à l'affichage de la page en mode prévisualisation
+     * Traitement propre à l'affichage de la page en mode prévisualisation.
      *
      * @return void
      */
@@ -126,9 +126,9 @@ class Page extends Main
 
             $this->fullRewriting[] = $parent->getMeta('rewriting') . '/';
 
-            $breadCrumbs = array(
+            $breadCrumbs = [
                 'title' => $parent->getMeta('titre'),
-            );
+            ];
             if ($parent->getGabarit()->getView()) {
                 $breadCrumbs['url'] = implode('/', $this->fullRewriting) . '/';
             }
@@ -137,7 +137,7 @@ class Page extends Main
     }
 
     /**
-     * Traitement propre à l'affichage de la page en mode normal
+     * Traitement propre à l'affichage de la page en mode normal.
      *
      * @return void
      */
@@ -148,10 +148,10 @@ class Page extends Main
             $homepage = true;
             $this->rew[] = 'accueil';
         }
-        $this->parents         = array();
-        $this->fullRewriting   = array();
+        $this->parents = [];
+        $this->fullRewriting = [];
 
-        $id_parent = 0 ;
+        $id_parent = 0;
 
         foreach ($this->rew as $ii => $rewriting) {
             if (!$rewriting) {
@@ -192,7 +192,7 @@ class Page extends Main
                 $this->pageNotFound();
             }
 
-            $this->fullRewriting[]     = $rewriting;
+            $this->fullRewriting[] = $rewriting;
 
             if ($page->getGabarit()->getView()) {
                 $url = implode('/', $this->fullRewriting)
@@ -201,20 +201,19 @@ class Page extends Main
                 $url = '';
             }
 
-
-            $this->view->breadCrumbs[]  = array(
-                'title'    => $page->getMeta('titre'),
-                'url'      => $url,
-                'view'     => $page->getGabarit()->getView()
-            );
+            $this->view->breadCrumbs[] = [
+                'title' => $page->getMeta('titre'),
+                'url' => $url,
+                'view' => $page->getGabarit()->getView(),
+            ];
 
             if ($last) {
-                $this->page      = $page;
+                $this->page = $page;
             } else {
                 $this->parents[] = $page;
             }
 
-            $id_parent      = $id_gab_page;
+            $id_parent = $id_gab_page;
         }
     }
 }

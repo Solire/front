@@ -5,7 +5,7 @@ namespace Solire\Front\Controller;
 use Solire\Lib\Registry;
 
 /**
- * Controleur qui gère le middle office
+ * Controleur qui gère le middle office.
  *
  * @author  smonnot <smonnot@solire.fr>
  * @license CC by-nc http://creativecommons.org/licenses/by-nc/3.0/fr/
@@ -13,30 +13,30 @@ use Solire\Lib\Registry;
 class Middleoffice extends \Solire\Lib\Controller
 {
     /**
-     * Le gabaritpage de la page courante
+     * Le gabaritpage de la page courante.
      *
      * @var \Solire\Lib\Model\gabaritPage
      */
     private $page = null;
 
     /**
-     * La session de l'utilisateur admin connecté
+     * La session de l'utilisateur admin connecté.
      *
      * @var \Solire\Lib\Session
      */
     protected $utilisateurAdmin;
 
     /**
-     * La manageur des gabarits
+     * La manageur des gabarits.
      *
      * @var \Solire\Lib\Model\gabaritManager
      */
     public $gabaritManager;
 
     /**
-     * Accepte les rewritings
+     * Accepte les rewritings.
      *
-     * @var boolean
+     * @var bool
      */
     public $acceptRew = true;
 
@@ -53,7 +53,7 @@ class Middleoffice extends \Solire\Lib\Controller
     }
 
     /**
-     * Action pour la barre du middle office
+     * Action pour la barre du middle office.
      *
      * @return void
      */
@@ -87,16 +87,16 @@ class Middleoffice extends \Solire\Lib\Controller
 
             if ($this->utilisateurAdmin->isConnected()) {
                 $this->page->makeVisible = true;
-                $this->page->makeHidden  = true;
+                $this->page->makeHidden = true;
 
                 $hook = new \Solire\Lib\Hook();
                 $hook->setSubdirName('back');
 
-                $hook->permission  = null;
+                $hook->permission = null;
                 $hook->utilisateur = $this->utilisateurAdmin;
-                $hook->visible     = $this->page->getMeta('visible') == 0 ? 1 : 0;
-                $hook->ids         = $_POST['id_gab_page'];
-                $hook->versionId   = ID_VERSION;
+                $hook->visible = $this->page->getMeta('visible') == 0 ? 1 : 0;
+                $hook->ids = $_POST['id_gab_page'];
+                $hook->versionId = ID_VERSION;
 
                 $hook->exec('pagevisible');
 
@@ -108,7 +108,7 @@ class Middleoffice extends \Solire\Lib\Controller
                     if ($hook->visible == 1) {
                         $this->page->makeVisible = false;
                     } else {
-                        $this->page->makeHidden  = false;
+                        $this->page->makeHidden = false;
                     }
                 }
             }
@@ -120,7 +120,7 @@ class Middleoffice extends \Solire\Lib\Controller
     }
 
     /**
-     * Dialog pour la configuration des images
+     * Dialog pour la configuration des images.
      *
      * @return void
      */
@@ -130,7 +130,7 @@ class Middleoffice extends \Solire\Lib\Controller
     }
 
     /**
-     * Dialog pour la modification des zones HTML
+     * Dialog pour la modification des zones HTML.
      *
      * @return void
      */
