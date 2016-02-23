@@ -7,7 +7,7 @@
   {% if items %}
   <ul class="{{ class }}">
     {% for item in items %}
-      <li class="{{ class }}-item" {{ item.attributes }}>
+      <li class="{{ class }}-item {{ item.isActive ? 'isActive' }}" {{ item.attributes }}>
         {{ links_tree.link(item.title, item.url) }}
         {% if item.children %}
           {{ links_tree.ul(item.children, class, attributes, menu_level + 1) }}
