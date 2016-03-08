@@ -9,7 +9,7 @@ use Solire\Lib\Session;
 use Solire\Lib\Hook;
 
 /**
- * Controleur principal
+ * Controleur principal.
  *
  * @author  smonnot  <smonnot@solire.fr>
  * @license CC by-nc http://creativecommons.org/licenses/by-nc/3.0/fr/
@@ -17,19 +17,21 @@ use Solire\Lib\Hook;
 class Main extends \Solire\Lib\Controller
 {
     /**
-     * Utilisateur de l'admin
+     * Utilisateur de l'admin.
+     *
      * @var Session
      */
     public $utilisateurAdmin;
 
     /**
-     * Manager des gabarits
+     * Manager des gabarits.
+     *
      * @var GabaritManager
      */
     public $gabaritManager;
 
     /**
-     * Fonction éxécutée avant l'execution de la fonction relative à la page en cours
+     * Fonction éxécutée avant l'execution de la fonction relative à la page en cours.
      *
      * @return void
      * @hook front/ shutdown Avant l'inclusion de la vue
@@ -100,11 +102,11 @@ class Main extends \Solire\Lib\Controller
             true
         );
 
-        $this->view->breadCrumbs = array();
-        $this->view->breadCrumbs[] = array(
+        $this->view->breadCrumbs = [];
+        $this->view->breadCrumbs[] = [
             'title' => $this->tr('Accueil'),
-            'url'   => './',
-        );
+            'url' => './',
+        ];
 
         $hook = new Hook();
         $hook->setSubdirName('Front');
@@ -115,7 +117,7 @@ class Main extends \Solire\Lib\Controller
     }
 
     /**
-     * Fonction éxécutée après l'execution de la fonction relative à la page en cours
+     * Fonction éxécutée après l'execution de la fonction relative à la page en cours.
      *
      * @return void
      * @hook front/ shutdown Avant l'inclusion de la vue
