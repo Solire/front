@@ -3,7 +3,7 @@
 namespace Solire\Front\Controller;
 
 /**
- * Controleur qui gère l'affichage du sitemap
+ * Controleur qui gère l'affichage du sitemap.
  *
  * @author  smonnot <smonnot@solire.fr>
  * @license CC by-nc http://creativecommons.org/licenses/by-nc/3.0/fr/
@@ -11,7 +11,7 @@ namespace Solire\Front\Controller;
 class Sitemap extends Main
 {
     /**
-     * Action qui va s'occuper de l'affichage du sitemap
+     * Action qui va s'occuper de l'affichage du sitemap.
      *
      * @global array $pagesResult ??
      *
@@ -33,16 +33,16 @@ class Sitemap extends Main
             $title = false;
         }
 
-        $this->pages = array();
+        $this->pages = [];
 
         $accueil = $this->gabaritManager->getPage(ID_VERSION, ID_API, 1);
-        $this->pages[] = array(
+        $this->pages[] = [
             'title' => $accueil->getMeta('titre'),
             'visible' => $accueil->getMeta('visible'),
             'path' => '',
             'importance' => $accueil->getMeta('importance'),
-            'lastmod' => substr($accueil->getMeta('date_modif'), 0, 10)
-        );
+            'lastmod' => substr($accueil->getMeta('date_modif'), 0, 10),
+        ];
 
         //Si ids = *, on recupere tous les gabarits de niveau 0
         if ($this->appConfig->get('sitemap', 'ids') == '*') {
@@ -74,13 +74,13 @@ class Sitemap extends Main
             ) {
                 $path = $rubrique->getMeta('rewriting')
                       . $gabarits[$rubrique->getMeta('id_gabarit')]['extension'];
-                $this->pages[] = array(
-                    'title'      => $rubrique->getMeta('titre'),
-                    'visible'    => $rubrique->getMeta('visible'),
-                    'path'       => $path,
+                $this->pages[] = [
+                    'title' => $rubrique->getMeta('titre'),
+                    'visible' => $rubrique->getMeta('visible'),
+                    'path' => $path,
                     'importance' => $rubrique->getMeta('importance'),
-                    'lastmod'    => substr($rubrique->getMeta('date_modif'), 0, 10)
-                );
+                    'lastmod' => substr($rubrique->getMeta('date_modif'), 0, 10),
+                ];
             }
 
             //Récupération des enfants
@@ -95,13 +95,13 @@ class Sitemap extends Main
                     $path = $rubrique->getMeta('rewriting') . '/'
                           . $page->getMeta('rewriting')
                           . $gabarits[$page->getMeta('id_gabarit')]['extension'];
-                    $this->pages[] = array(
-                        'title'      => $page->getMeta('titre'),
-                        'visible'    => $page->getMeta('visible'),
-                        'path'       => $path,
+                    $this->pages[] = [
+                        'title' => $page->getMeta('titre'),
+                        'visible' => $page->getMeta('visible'),
+                        'path' => $path,
                         'importance' => $page->getMeta('importance'),
-                        'lastmod'    => substr($page->getMeta('date_modif'), 0, 10)
-                    );
+                        'lastmod' => substr($page->getMeta('date_modif'), 0, 10),
+                    ];
                 }
 
                 //Récupération des enfants
@@ -117,13 +117,13 @@ class Sitemap extends Main
                               . $page->getMeta('rewriting') . '/'
                               . $sspage->getMeta('rewriting')
                               . $gabarits[$sspage->getMeta('id_gabarit')]['extension'];
-                        $this->pages[] = array(
-                            'title'      => $sspage->getMeta('titre'),
-                            'visible'    => $sspage->getMeta('visible'),
-                            'path'       => $path,
+                        $this->pages[] = [
+                            'title' => $sspage->getMeta('titre'),
+                            'visible' => $sspage->getMeta('visible'),
+                            'path' => $path,
                             'importance' => $sspage->getMeta('importance'),
-                            'lastmod'    => substr($sspage->getMeta('date_modif'), 0, 10)
-                        );
+                            'lastmod' => substr($sspage->getMeta('date_modif'), 0, 10),
+                        ];
                     }
                 }
             }
@@ -146,8 +146,8 @@ class Sitemap extends Main
 
             if (isset($_GET['term']) && $_GET['term'] != '') {
                 $term = $_GET['term'];
-                $pagesResult = array();
-                array_walk($pages, array($this, 'filter'), $term);
+                $pagesResult = [];
+                array_walk($pages, [$this, 'filter'], $term);
                 $pages = $pagesResult;
             }
 
@@ -156,18 +156,18 @@ class Sitemap extends Main
                     $page['title'] = ($page['visible'] ? '✓' : '✕') . ' ' . $page['title'];
 
                     if ($page['path'] != '') {
-                        $pagesClone[] = array(
+                        $pagesClone[] = [
                             'title' => $page['title'],
                             'value' => $page['path'],
-                        );
+                        ];
                     }
                 } elseif (isset($_GET['onlylink']) && $_GET['onlylink'] == 1) {
                     $page['title'] = ($page['visible'] ? '&#10003;' : '&#10005;') . ' ' . $page['title'];
 
-                    $pagesClone[] = array(
+                    $pagesClone[] = [
                         $page['title'],
                         $page['path'],
-                    );
+                    ];
                 } else {
                     $pagesClone[] = $page;
                 }
@@ -179,7 +179,7 @@ class Sitemap extends Main
     }
 
     /**
-     * Permet de filter la liste des pages selon le titre
+     * Permet de filter la liste des pages selon le titre.
      *
      * @param array  $page         Tableau des infos de pages
      * @param type   $index        ??
