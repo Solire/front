@@ -29,11 +29,17 @@
         <link rel="canonical" href="{{ seo.getUrlCanonical() }}"/>
     {% endif %}
 
-    {{ css.outputAll() }}
+    {% block headCss %}
+        {{ css.outputAll() }}
+        {{ css.resetLibraries() }}
+    {% endblock headCss %}
+
+    {% block headJavascript %}
+    {% endblock headJavascript %}
 </head>
 <body itemscope itemtype="http://schema.org/WebPage">
 
-<header>
+<header class="header">
     {% block header %}
     {% endblock %}
 </header>
@@ -54,9 +60,40 @@
     {% endblock %}
 </footer>
 
+{% block footerCss %}
+    {{ css.outputAll() }}
+    {{ css.resetLibraries() }}
+{% endblock footerCss %}
+
 <script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="{{ javascript.getPath('front/js/jquery/jquery-1.7.min.js') }}"><\/script>')</script>
 {{ javascript.outputAll() }}
 
+<script
+        type="text/javascript" id="cookiebanner" src="{{ javascript.getPath('front/bower_components/cookie-banner-solire/dist/cookiebanner.min.js') }}"
+        data-ask="1"
+        data-audience="Acceptez-vous d'être suivi par notre outils de mesure d'audience?"
+        data-moreinfo="{{ url }}{{ cookiesPage ? cookiesPage.getMeta('rewriting') ~ '.html' }}"
+></script>
 {{ mainPage.element_commun.getValues('code_google_analytics') }}
+<script type="text/javascript">
+    /*
+     * On vérifie qu'on a l'autorisation
+     */
+    if (!window.Cookiebanner.isAllowed('audience')) {
+        // Fonction d'effacement des cookies
+        function delCookie(name )   {
+            path = ";path=" + "/";
+            domain = ";domain=" + "." + window.location.hostname;
+            var expiration = "Thu, 01-Jan-1970 00:00:01 GMT";
+            document.cookie = name + "=" + path + domain + ";expires=" + expiration;
+        }
+
+        // Efface tous les types de cookies utilisés par Google Analytics
+        var cookieNames = ["__utma","__utmb","__utmc","__utmz","_ga"];
+        for (var i=0; i<cookieNames.length; i++) {
+            delCookie(cookieNames[i])
+        }
+    }
+</script>
 </body>
 </html>
