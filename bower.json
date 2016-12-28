@@ -1,0 +1,7 @@
+{
+  "name": "solire_front",
+  "dependencies": {
+    "slick-carousel": "^1.6.0",
+    "cookie-banner-solire": "~2.0.0"
+  }
+}

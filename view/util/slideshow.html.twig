@@ -1,0 +1,49 @@
+{# simple(array_of_slide, is_autoplay, autoplay_speed, is_dots_enable, is_arrows_enable, show_navigation_numbers) #}
+{% macro simple(slides, autoplay, autoplaySpeed, dots, arrows, navigationNumbers) %}
+    {% set slideshowId = random() %}
+    <div class="slideshow" id="slideshow{{ slideshowId }}">
+        {% for slide in slides %}
+
+            {% if slide.elements is not defined %}
+                <img src="{{ slide }}">
+            {% else %}
+                <div>
+                    {% if slide.link is defined %}
+                        <a href="{{ slide.link }}">
+                    {% endif %}
+                        {% for slideElement in slide.elements %}
+                            {% if slideElement.type == 'text' %}
+                                <div>{{ slideElement.value }}</div>
+                            {% elseif slideElement.type == 'img' %}
+                                <img src="{{ slideElement.value }}">
+                            {% else %}
+                                <img src="{{ slideElement }}">
+                            {% endif %}
+                        {% endfor %}
+                    {% if slide.link is defined %}
+                        </a>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+        {% endfor %}
+
+        {{ javascript.addLibrary('front/bower_components/slick-carousel/slick/slick.min.js') }}
+        {{ css.addLibrary('front/bower_components/slick-carousel/slick/slick.css') }}
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#slideshow{{ slideshowId }}').slick({
+                {% if navigationNumbers|default(false) %}
+                customPaging : function(slider, i) {
+                    return '<a>' + (i + 1) + '</a>';
+                },
+                {% endif %}
+                dots: {{ dots|default('true') }},
+                autoplay: {{ autoplay|default('true') }},
+                autoplaySpeed: {{ autoplaySpeed|default(6000) }},
+                arrows: {{ arrows|default('false') }}
+            });
+        });
+    </script>
+{% endmacro %}

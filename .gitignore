@@ -6,3 +6,7 @@
 # fichier de config
 /config/local.ini
 /config/online.ini
+
+# bower #
+###################
+bower_components/
