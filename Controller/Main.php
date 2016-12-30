@@ -105,7 +105,8 @@ class Main extends \Solire\Lib\Controller
         $this->view->breadCrumbs = [];
         $this->view->breadCrumbs[] = [
             'title' => $this->tr('Accueil'),
-            'url' => './',
+            'url'   => './',
+            'view'  => true,
         ];
 
         $hook = new Hook();
