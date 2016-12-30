@@ -1,4 +1,4 @@
-{% macro contact(companyName, addressStreet, addressPostalcode, addressCity, addressCountry, telephone, email) %}
+{% macro contact(companyName, addressStreet, addressPostalcode, addressCity, addressCountry, telephone, email, additional) %}
     <address class="util-contact" itemscope itemtype="http://schema.org/LocalBusiness">
         <div class="util-contact-company-name" itemprop="name">{{ companyName }}</div>
         <div class="util-contact-address" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
@@ -25,6 +25,11 @@
                 {{ email }}
             </a>
         </div>
+        {% if additional %}
+            <div class="util-contact-additional">
+                {{ additional }}
+            </div>
+        {% endif %}
     </address>
 {% endmacro %}
 

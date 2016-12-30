@@ -38,32 +38,36 @@
     {% endblock headJavascript %}
 </head>
 <body itemscope itemtype="http://schema.org/WebPage">
+{% block bodyPrepend %}{% endblock bodyPrepend %}
+<div class="pageContainer">
 
-<header class="header">
-    {% block header %}
+    <header class="header" role="banner">
+        {% block header %}
+        {% endblock %}
+    </header>
+
+    {% block breadcrumbs %}
     {% endblock %}
-</header>
 
-{% block breadcrumbs %}
-{% endblock %}
+    <div id="main" role="main">
+        {% block content %}
+        {% endblock %}
+    </div>
 
-<div id="main" role="main">
-    {% block content %}
-    {% endblock %}
+    <footer class="footer" id="mainFooter">
+        {% block footer %}
+            {% if mainPage.element_commun.getValues('publisher') != '' %}
+                <a target="_blank" rel="publisher" href="https://plus.google.com/{{ mainPage.element_commun.getValues("publisher") }}">{{ mainPage.element_commun.getValues("publisher_nom") }}</a>
+            {% endif %}
+        {% endblock %}
+    </footer>
+
+    {% block footerCss %}
+        {{ css.outputAll() }}
+        {{ css.resetLibraries() }}
+    {% endblock footerCss %}
+
 </div>
-
-<footer class="footer" id="mainFooter">
-    {% block footer %}
-        {% if mainPage.element_commun.getValues('publisher') != '' %}
-            <a target="_blank" rel="publisher" href="https://plus.google.com/{{ mainPage.element_commun.getValues("publisher") }}">{{ mainPage.element_commun.getValues("publisher_nom") }}</a>
-        {% endif %}
-    {% endblock %}
-</footer>
-
-{% block footerCss %}
-    {{ css.outputAll() }}
-    {{ css.resetLibraries() }}
-{% endblock footerCss %}
 
 <script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="{{ javascript.getPath('front/js/jquery/jquery-1.7.min.js') }}"><\/script>')</script>
 {{ javascript.outputAll() }}
@@ -95,5 +99,6 @@
         }
     }
 </script>
+{% block bodyAppend %}{% endblock bodyAppend %}
 </body>
 </html>

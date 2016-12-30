@@ -17,7 +17,7 @@
                             {% elseif slideElement.type == 'img' %}
                                 <img src="{{ slideElement.value }}">
                             {% else %}
-                                <img src="{{ slideElement }}">
+                                <{{ slideElement.type }} {{ slideElement.attributes }}>{{ slideElement.value }}</{{ slideElement.type }}>
                             {% endif %}
                         {% endfor %}
                     {% if slide.link is defined %}
