@@ -2,13 +2,18 @@
    <a href="{{ url }}">{{ title }}</a>
 {% endmacro %}
 
-{% macro ul(items, class, attributes, menu_level) %}
+{% macro ul(items, class, attributes, menu_level, strongAsActive) %}
   {% import _self as links_tree %}
+  {% set strongAsActive = strongAsActive|default(0) %}
   {% if items %}
   <ul class="{{ class }}">
     {% for item in items %}
       <li class="{{ class }}-item {{ item.isActive ? 'isActive' }}" {{ item.attributes }}>
-        {{ links_tree.link(item.title, item.url) }}
+        {% if item.isActive and strongAsActive %}
+            <strong>{{ item.title }}</strong>
+        {% else %}
+            {{ links_tree.link(item.title, item.url) }}
+        {% endif %}
         {% if item.children %}
           {{ links_tree.ul(item.children, class, attributes, menu_level + 1) }}
         {% endif %}
