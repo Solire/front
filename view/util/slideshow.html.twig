@@ -15,7 +15,7 @@
                             {% if slideElement.type == 'text' %}
                                 <div>{{ slideElement.value }}</div>
                             {% elseif slideElement.type == 'img' %}
-                                <img src="{{ slideElement.value }}">
+                                <img src="{{ slideElement.value }}" {{ slideElement.attributes }}>
                             {% else %}
                                 <{{ slideElement.type }} {{ slideElement.attributes }}>{{ slideElement.value }}</{{ slideElement.type }}>
                             {% endif %}
