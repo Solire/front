@@ -2,14 +2,7 @@
   "name": "solire/front",
   "type": "library",
   "description": "",
-  "keywords": [""],
-  "license": "CC by-nc",
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://satis.solire.fr/"
-    }
-  ],
+  "license": "proprietary",
   "require": {
     "php": ">=5.5.0",
     "solire/lib": "^6.1"
