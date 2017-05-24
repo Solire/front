@@ -15,6 +15,7 @@
     <meta name="google-site-verification" content="{{ mainPage.element_commun.getValues("code_google_webmaster_tools") }}">
     <meta name="msvalidate.01" content="{{ mainPage.element_commun.getValues("code_bing_webmaster_tools") }}">
     <meta name="generator" content="Solire" />
+    {% block additionalMeta %}{% endblock additionalMeta %}
     <!--[if lt IE 9]>
         <script src="{{ url }}app/front/js/html5.js"></script>
     <![endif]-->
